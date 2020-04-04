@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        
+        head{
+            align-items: center
+        }
+
+        h3{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+
+        input[type="number"] {
+            width: 80px;
+            height: 20px;
+            text-align: center;
+            margin: 3px;
+            float: left;
+        }
+
+        
+        select,
+        .equal {
+            margin: 5px;
+            float: left;
+        }
+
+        
+        output {
+            display: block;
+            border: 1px solid #333333;
+            width: 80px;
+            height: 20px;
+            margin: 3px;
+            padding: 2px;
+            text-align: center;
+            background: #910000;
+            color: #ffffff;
+            float: left;
+        }
+    </style>
+
+    <script>
+        //calculate
+        function result() {
+
+            
+            var form = document.getElementById("calc");
+
+            //משתנה של תוצאה
+            var out = form.elements["z"];
+
+            //משתנים של המספרים
+            var num1 = parseInt(form.elements["x"].value);
+            var num2 = parseInt(form.elements["y"].value);
+            //משתנה של האופרטור
+            var operator = parseInt(form.elements["op"].value);
+
+            
+            switch (operator) {
+                //אם יש חיבור
+                case 0:
+                    out.value = num1 + num2;
+                    break;
+                    //אם יש חיסור
+                case 1:
+                    out.value = num1 - num2;
+                    break;
+                    //אם יש כפל
+                case 2:
+                    out.value = num1 * num2;
+                    break;
+                    //אם יש חילוק
+                case 3:
+                    out.value = (num1 / num2).toFixed(1); //משאיר את כל המספרים אחרי ה0 , ומשאיר רק אחד
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+
+
+</head>
+
+<body>
+
+    <h3>Calculator</h3>
+
+    <form id="calc" oninput="result()">
+        <input name="x" type="number" value="0" />
+
+        <select name="op" onchange="result()">
+            <option value="0">+</option>
+            <option value="1">-</option>
+            <option value="2">×</option>
+            <option value="3">÷</option>
+        </select>
+
+        <input name="y" type="number" value="0" />
+
+        <div class="equal"> = </div>
+
+        <output name="z" for="x y">0</output>
+
+
+
+    </form>
+
+</body>
